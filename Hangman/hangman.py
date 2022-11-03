@@ -1,7 +1,7 @@
 import os
 import random
 
-Animal_list = ["dog", "cow", "cat", "goose", "fox", "gorilla", "horse", "orangutan", "tiger"]
+Animal_list = ["dog", "cow", "cat", "fox", "horse", "tiger"]
 
 rightword = random.choice(Animal_list)
 
@@ -48,37 +48,38 @@ def Print_letter():
             print("_", end=" ")
 
 
+
+# Start game with clear terminal.
 os.system('cls')
-    
+
 while True:
 
+    # Live checker
+    # If lives hit 0, the player loose the game.
     if lives == 0:
         os.system("cls")
         print(HANGMANPICS[lives])
         print("\n")
-
         Print_letter()
-
-        print("\n You Lost! \n \n " + "The right word was " +  rightword)
+        print("\n")
+        print("You Lost! \n \n" + "The right word was " +  rightword + "\n")
         break
 
 
     print(HANGMANPICS[lives])
     print("\n")
 
-
     Print_letter()
+    print("\n")
 
 
-    guess = input("\n" + "Enter a letter: ")
-    
+    guess = input("Enter a letter: ")
 
+    # Check if the guess is correct or not.
     if guess in correct_letters:
-        print("\n" + "Letter alredy guessed that!")
         os.system("cls")
         continue
     elif guess not in rightword:
-        print("Wrong Letter!")
         lives = lives - 1
         os.system("cls")
         continue
@@ -86,12 +87,13 @@ while True:
 
     correct_letters = correct_letters + guess
 
+
+    # Check if all letters was guessed
     if sorted(rightword) == sorted(correct_letters):
         os.system("cls")
         print("\n" + "You Won!")
         break
 
 
-
-
+    # Clear terminal
     os.system('cls')
